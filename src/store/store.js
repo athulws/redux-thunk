@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartSlice from "./cartSlice";//here i need to mention the "slice" that created
-import productSlice from "./productSlice";
+import cartSlice from "./cartSlice";//here i need to mention the "slice" that created from cartSlice.js
+import productSlice from "./productSlice"; // this is another "slice" that i created from prdouctSlice.js
+
 const store = configureStore({
     reducer : { // This is a property of reducer
         cart: cartSlice,//i will create one property of cart that will hold my cartSlice, Redux DevTool il ee cart kanam
 
-
-        // prodcuts: productSlice
+        products: productSlice
     }
 });
 

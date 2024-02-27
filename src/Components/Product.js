@@ -2,30 +2,53 @@ import React, { useEffect, useState } from 'react'
 import { CardFooter } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
 //--------------imporing things----------------------------------
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
+import { getProducts } from '../store/productSlice';
+
 
 //---------------imporing things---------------------------------
+
+
 const Product = () => {
-    const [products, getProduct] = useState([]);
+    const dispatch = useDispatch();
+    const {data: products,status} = useSelector(state => state.products); // "{data: products}" ithil ulla products is from map function and "(state => state.products)" ithil ulla "products" isn from store.js
+
+    // const [products, getProduct] = useState([]); ===> i don't need this because my product will come from my product slice
 
     useEffect(() => {
-        //api call
-        fetch('https://fakestoreapi.com/products')
-            .then(data => data.json())
-            .then(result => getProduct(result))
+
+        //dispatch an action for fetchProducts
+        dispatch(getProducts());
+
+        // //api call
+        // fetch('https://fakestoreapi.com/products')
+        //     .then(data => data.json())
+        //     .then(result => getProduct(result))
     }, []);
 
 
     // ...................................................................................................................................
 
+    // ----------------To handle the error code of the promises----------------------------------
+
+//first if condition => loading kanich varm page
+//second if condition => ippo thettaya url okk aan fetch ne koduthathenkil error kanikkm
+    if (status==='loading') {
+        return <p>Loading...</p>
+    }
+
+    if (status==='error') {
+        return <p>Something went! try again later</p>
+    }
+
+    // ----------------To handle the error code of the promises----------------------------------
+    
     // ee step store and slice okk create cheythathine shesham aan
 
-    const dispatch = useDispatch();
-
+    
     //map function nte ullil il ulla "product" aan ithilum koduthath
     const addToCart = (product) => {
         // dispatch an add action // ith cheyyan "dispatch" and "add"(add to cart aakkan ulla add -> it is from cartSlice.js file) um import cheyyanam //
