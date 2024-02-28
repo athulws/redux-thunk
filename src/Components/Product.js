@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CardFooter } from 'react-bootstrap';
+import { Alert, CardFooter } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 //--------------imporing things----------------------------------
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add } from '../store/cartSlice';
 import { getProducts } from '../store/productSlice';
 
+import StatusCode from '../utils/StatusCode';
 
 //---------------imporing things---------------------------------
 
@@ -36,12 +37,12 @@ const Product = () => {
 
 //first if condition => loading kanich varm page
 //second if condition => ippo thettaya url okk aan fetch ne koduthathenkil error kanikkm
-    if (status==='loading') {
+    if (status===StatusCode.LOADING) {
         return <p>Loading...</p>
     }
 
-    if (status==='error') {
-        return <p>Something went! try again later</p>
+    if (status===StatusCode.ERROR) {
+        return <Alert key="danger" variant='danger'>Something went wrong!!! Please try again later</Alert>
     }
 
     // ----------------To handle the error code of the promises----------------------------------

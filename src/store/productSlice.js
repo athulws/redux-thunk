@@ -3,11 +3,11 @@
 
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import StatusCode from '../utils/StatusCode';
 
 const initialState = { //here the initial state is not empty. we are making an API call, So api calls basically always not written data it also written errors or other status so to handle all the expect of api lets make it an object and the result in data that is empty as of now.
     data:[],            // API call cheyyumbol oru object create cheyyanam, athil aan initialSate cheyyendath
-    status: 'idle'
+    status: StatusCode.IDLE
 };
 
 const productSlice = createSlice({
@@ -19,17 +19,18 @@ const productSlice = createSlice({
         //     state.data = action.payload; // ivide data update aan nadakkunnath that i get from API
         // }
     },
-    extraReducers: (builder) => {
+    extraReducers: (builder) => {//To handle the error code of the promises:
+
         builder// Now in the extra reducer we have to read the data We have to do our state update logic, so we have create "builder" and addCase(). 
         .addCase(getProducts.pending, (state, action)=>{
-            state.status = 'loading'
+            state.status = StatusCode.LOADING;
         })
         .addCase(getProducts.fulfilled, (state, action) =>{ // once my promise is resolved i want to update the state //"fulfilled" ne pakaram eth state venamenkilum kodukkam like pending etc...athine "getProduct" koduth oru dot koduthal suggetions varum
             state.data = action.payload;
-            state.status = 'idle'
+            state.status = StatusCode.IDLE
         })
         .addCase(getProducts.rejected, (state, action)=>{
-            state.status = 'error'
+            state.status = StatusCode.ERROR
         })
     }
 });
@@ -72,6 +73,5 @@ export const getProducts = createAsyncThunk('products/get', async () => {
 
 
 
-//To handle the error code of the promises:
 
-//
+//THIS IS HOW ASYCHRONOUS OPERATION IN REDUX TOOLKIT WITH THE HELP OF CREATE ASYNC THUNK

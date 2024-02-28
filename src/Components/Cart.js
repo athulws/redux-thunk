@@ -33,7 +33,7 @@ const Cart = () => {
             <Card.Footer>
 
                 {/* map function nte ullil il ulla "product" aan ith */}
-                <Button variant="danger">Remove Item</Button>
+                <Button variant="danger" onClick={() => removeCart(product.id)}>Remove Item</Button>
 
             </Card.Footer>
         </Card>
