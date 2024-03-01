@@ -19,7 +19,7 @@ const productSlice = createSlice({
         //     state.data = action.payload; // ivide data update aan nadakkunnath that i get from API
         // }
     },
-    extraReducers: (builder) => {//To handle the error code of the promises:
+    extraReducers: (builder) => {//extraReducers is a powerful feature of Redux Toolkit that allows you to handle a wide range of actions in your slices
 
         builder// Now in the extra reducer we have to read the data We have to do our state update logic, so we have create "builder" and addCase(). 
         .addCase(getProducts.pending, (state, action)=>{
@@ -42,7 +42,7 @@ export default productSlice.reducer;
 export const getProducts = createAsyncThunk('products/get', async () => {
     const data = await fetch('https://fakestoreapi.com/products')
     const result = await data.json();
-    return result; //we don't have dispatch anything because nothing in reduces.So just i have to "return" the data
+    return result; //we don't have dispatch anything because nothing in reducers.So just i have to "return" the data
 })
 
 
@@ -75,3 +75,8 @@ export const getProducts = createAsyncThunk('products/get', async () => {
 
 
 //THIS IS HOW ASYCHRONOUS OPERATION IN REDUX TOOLKIT WITH THE HELP OF CREATE ASYNC THUNK
+
+
+
+
+

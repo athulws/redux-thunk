@@ -10,3 +10,7 @@
 //1) create a store
 //2) Reducers create cheyyunnathine pakaram aadyam "slice" create cheyyuka.
 //   Slice create cheythal ath reducers um and respective action creator um create cheyth tharum.
+
+
+//The "state" represents the current state of the application
+// "actions" are objects that describe the desired changes to that state
