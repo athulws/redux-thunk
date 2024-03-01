@@ -19,9 +19,9 @@ const productSlice = createSlice({
         //     state.data = action.payload; // ivide data update aan nadakkunnath that i get from API
         // }
     },
-    extraReducers: (builder) => {//extraReducers is a powerful feature of Redux Toolkit that allows you to handle a wide range of actions in your slices
+    extraReducers: (builder) => { //extraReducers is a powerful feature of Redux Toolkit that allows you to handle a wide range of actions in your slices
 
-        builder// Now in the extra reducer we have to read the data We have to do our state update logic, so we have create "builder" and addCase(). 
+        builder//When you define reducers within extraReducers, you use the builder object and its methods to specify how the state should be updated in response to different action types.// The builder object provides methods like addCase, addMatcher, addDefaultCase, etc.// Now in the extra reducer we have to read the data We have to do our state update logic, so we have create "builder" and addCase(). 
         .addCase(getProducts.pending, (state, action)=>{
             state.status = StatusCode.LOADING;
         })
