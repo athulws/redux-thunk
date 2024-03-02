@@ -15,7 +15,7 @@ import StatusCode from '../utils/StatusCode';
 
 const Product = () => {
     const dispatch = useDispatch();
-    const {data: products,status} = useSelector(state => state.products); // "{data: products}" ithil ulla products is from map function and "(state => state.products)" ithil ulla "products" isn from store.js
+    const {data: products,status} = useSelector(state => state.products); // "{data: products}" ithil ulla products is from map function and "data" is from productSlice.js and "(state => state.products)" ithil ulla "products" isn from store.js
 
     // const [products, getProduct] = useState([]); ===> i don't need this because my product will come from my product slice
 
